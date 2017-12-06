@@ -5,30 +5,33 @@ $( document ).ready(function() {
 
 function doSim() {
   
-  var fleet1 = new fleetCreate($('#fighterOne').val(), 9,
-                              $('#carrierOne').val(), 9,
-                              $('#destroyerOne').val(), 9,
-                              $('#cruiserOne').val(), 7,
-                              $('#dreddieOne').val(), 5,
-                              $('#warSunOne').val(), 3,
-                              $('#cannonOne').val(), 6,
-                              $('#infantryOne').val(), 9);
+  var fleet1 = new fleet("Fleet 1",
+                        $('#fighterOne').val(), 9,
+                        $('#carrierOne').val(), 9,
+                        $('#destroyerOne').val(), 9,
+                        $('#cruiserOne').val(), 7,
+                        $('#dreddieOne').val(), 5,
+                        $('#warSunOne').val(), 3,
+                        $('#cannonOne').val(), 6,
+                        $('#infantryOne').val(), 9);
 
-  var fleet2 = new fleetCreate($('#fighterTwo').val(), 9,
-                              $('#carrierTwo').val(), 9,
-                              $('#destroyerTwo').val(), 9,
-                              $('#cruiserTwo').val(), 7,
-                              $('#dreddieTwo').val(), 5,
-                              $('#warSunTwo').val(), 3,
-                              $('#cannonTwo').val(), 6,
-                              $('#infantryTwo').val(), 9);
+  var fleet2 = new fleet("Fleet 2",
+                        $('#fighterTwo').val(), 9,
+                        $('#carrierTwo').val(), 9,
+                        $('#destroyerTwo').val(), 9,
+                        $('#cruiserTwo').val(), 7,
+                        $('#dreddieTwo').val(), 5,
+                        $('#warSunTwo').val(), 3,
+                        $('#cannonTwo').val(), 6,
+                        $('#infantryTwo').val(), 9);
 
   alert(fleet1.print());
   alert(fleet2.print());
 
+
   var fleet1wins = 0;
   var fleet2wins = 0;
-  for (var j = 0; j < 1000; j++){ //loops through the simulaion 1000 times figuring our who wins
+  for (var j = 0; j < 1; j++){ //loops through the simulaion 1000 times figuring our who wins
 
     var winner = 0;
     fleet1f = Object.assign({},fleet1);
@@ -49,8 +52,9 @@ function doSim() {
 //fleet object contains all the necessary info about the fleet
 //var fleetc = 
 
-function fleetCreate(fighter, fighterHit, carrier, carrierHit, destroyer, destroyerHit, cruiser, cruiserHit, dreddie, dreddieHit, warSun, warSunHit, cannon, cannonHit, infantry, infantryHit){
+function fleet(fleetName, fighter, fighterHit, carrier, carrierHit, destroyer, destroyerHit, cruiser, cruiserHit, dreddie, dreddieHit, warSun, warSunHit, cannon, cannonHit, infantry, infantryHit){
 
+  this.fleetName = fleetName;
   this.fight = fighter;
   this.fightHit = fighterHit;
   this.car = carrier;
@@ -83,25 +87,28 @@ function fleetCreate(fighter, fighterHit, carrier, carrierHit, destroyer, destro
       output += "Infantry: " + this.gf + " Combat: " + this.gfHit + "\n";
       return output
   };
-}
 
+  this.fleetSum = function() {
+    var sum = 0
+    sum = 1*this.fight + 1*this.car + 1*this.des + 1*this.cru + 1*this.dred + 1*this.sun
+    return sum
+  }
 
-//fleetSum counts up the number of ships in each fleet
-function fleetSum(fleet){
-  var sum = 0
-  sum = fleet.fight + fleet.car + fleet.des + fleet.cru + fleet.dred + fleet.sun
-  return sum
+  this.isDead = function() {
+    return this.fleetSum() < 1
+  }
 }
 
 // roll makes a D10 roll N times and returns the hits based on the ship's combat value
 function roll(n, hitv){
   var hit = 0;
   for(i=0;i<n; i++){
-     var roll = Math.floor(Math.random()*10) + 1;
-        if(roll>= hitv){
-           hit ++ ;
-      }
+    var roll = Math.floor(Math.random()*10) + 1;
+    if(roll>= hitv){
+      hit ++ ;
+    }
   }
+  console.log(n + " shots at combat value: " + hitv + " got " + hit + " hits."); 
   return hit
 }
 
@@ -123,6 +130,7 @@ function battleRound(fleet){
   hits = hits + shipRound(fleet.cru, fleet.cruHit);
   hits = hits + shipRound(Math.ceil(fleet.dred/2), fleet.dredHit);
   hits = hits + shipRound(3*(Math.ceil(fleet.sun/2)), fleet.sunHit);
+  console.log(fleet.fleetName + " got a total of " + hits + " hits");
   return hits
 }
 
@@ -172,12 +180,14 @@ function assignHits(fleet, hits){
       fleet.sun = fleet.sun - 1;
     }
   }
+
+  console.log(fleet.fleetName + " has " + fleet.fleetSum() + " hits left")
 }
 
 //runs the simulation, looping through each game round
 function fleetSim(fleet1, fleet2){
   var winner
-  if( (fleetSum(fleet1) < 1 ) || (fleetSum(fleet2)<1) ){ // tests that there are enough ships
+  if( fleet1.isDead() || fleet2.isDead() ){ // tests that there are enough ships
     console.log("not enough ships in one of the fleets")
 
   } else {
@@ -188,8 +198,8 @@ function fleetSim(fleet1, fleet2){
     assignHits(fleet2, h1);
 
     //tests if the battle is over
-    if((fleetSum(fleet1)) < 1 ||(fleetSum(fleet2))<1){
-      if (fleetSum(fleet1) > fleetSum(fleet2)){
+    if(fleet1.isDead() || fleet2.isDead() ) {
+      if (fleet1.fleetSum() > fleet2.fleetSum()) {
           winner = 1
       } else {
           winner = 2
@@ -197,14 +207,14 @@ function fleetSim(fleet1, fleet2){
     }
 
     //only initiates if there are o fleets left
-    while(fleetSum(fleet1) > 0 && fleetSum(fleet2) > 0) { //while at least one fleet has ships
+    while(!fleet1.isDead() && !fleet2.isDead()) { //while at least one fleet has ships
       h1 = battleRound(fleet1)
       h2 = battleRound(fleet2)
       assignHits(fleet1, h2);
       assignHits(fleet2, h1);
     }
 
-    if (fleetSum(fleet1) > fleetSum(fleet2)){
+    if ( fleet1.fleetSum() > fleet2.fleetSum() ){
       winner = 1
     } else {
       winner = 2
