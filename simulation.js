@@ -108,7 +108,7 @@ function roll(n, hitv){
       hit ++ ;
     }
   }
-  console.log(n + " shots at combat value: " + hitv + " got " + hit + " hits."); 
+  $("#resultsDiv").append("<p>" + n + " shots at combat value: " + hitv + " got " + hit + " hits.</p>"); 
   return hit
 }
 
@@ -181,7 +181,7 @@ function assignHits(fleet, hits){
     }
   }
 
-  console.log(fleet.fleetName + " has " + fleet.fleetSum() + " hits left")
+  $("#resultsDiv").append("<p>" + fleet.fleetName + " has " + fleet.fleetSum() + " hits left</p>")
 }
 
 //runs the simulation, looping through each game round
@@ -208,7 +208,9 @@ function fleetSim(fleet1, fleet2){
 
     //only initiates if there are o fleets left
     while(!fleet1.isDead() && !fleet2.isDead()) { //while at least one fleet has ships
+      $("#resultsDiv").append("<p> <strong>Fleet 1 rolls: </strong></p>");
       h1 = battleRound(fleet1)
+      $("#resultsDiv").append("<p> <strong>Fleet 2 rolls: </strong></p>");
       h2 = battleRound(fleet2)
       assignHits(fleet1, h2);
       assignHits(fleet2, h1);
