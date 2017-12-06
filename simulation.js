@@ -116,14 +116,14 @@ function shipRound(n, hit){
 
 //rolls the dice for all the ships in the fleet and returns a total number of hits
 function battleRound(fleet){
-           var hits = 0
-           hits = hits + shipRound(fleet.fight, fleet.fightHit);
-           hits = hits + shipRound(fleet.car, fleet.carHit);
-           hits = hits + shipRound(fleet.des, fleet.desHit);
-           hits = hits + shipRound(fleet.cru, fleet.cruHit);
-           hits = hits + shipRound(Math.ceil(fleet.dred/2), fleet.dredHit);
-           hits = hits + shipRound(3*(Math.ceil(fleet.sun/2)), fleet.sunHit);
-           return hits
+  var hits = 0
+  hits = hits + shipRound(fleet.fight, fleet.fightHit);
+  hits = hits + shipRound(fleet.car, fleet.carHit);
+  hits = hits + shipRound(fleet.des, fleet.desHit);
+  hits = hits + shipRound(fleet.cru, fleet.cruHit);
+  hits = hits + shipRound(Math.ceil(fleet.dred/2), fleet.dredHit);
+  hits = hits + shipRound(3*(Math.ceil(fleet.sun/2)), fleet.sunHit);
+  return hits
 }
 
 
@@ -132,82 +132,87 @@ function battleRound(fleet){
 function assignHits(fleet, hits){
   h = hits
   if(fleet.fight > 0 && h > 0){
-     while(fleet.fight>0 && h > 0){
-       h = h - 1;
-       fleet.fight= fleet.fight - 1;
-     }
+   while(fleet.fight>0 && h > 0){
+     h = h - 1;
+     fleet.fight= fleet.fight - 1;
    }
-   if(fleet.car > 0 && h > 0){
-      while(fleet.car>0 && h > 0){
-        h = h - 1;
-        fleet.car= fleet.car - 1;
-      }
+  }
+
+  if(fleet.car > 0 && h > 0){
+    while(fleet.car>0 && h > 0){
+      h = h - 1;
+      fleet.car= fleet.car - 1;
     }
+  }
 
-    if(fleet.des > 0 && h > 0){
-       while(fleet.des>0 && h > 0){
-         h = h - 1;
-         fleet.des= fleet.des - 1;
-       }
-     }
+  if(fleet.des > 0 && h > 0){
+    while(fleet.des>0 && h > 0){
+      h = h - 1;
+      fleet.des= fleet.des - 1;
+    }
+  }
 
-     if(fleet.cru > 0 && h > 0){
-        while(fleet.cru>0 && h > 0){
-          h = h - 1;
-          fleet.cru= fleet.cru - 1;
-        }
-      }
+  if(fleet.cru > 0 && h > 0){
+    while(fleet.cru>0 && h > 0){
+      h = h - 1;
+      fleet.cru= fleet.cru - 1;
+    }
+  }
 
-      if(fleet.dred > 0 && h > 0){
-         while(fleet.dred>0 && h > 0){
-           h = h - 1;
-           fleet.dred= fleet.dred - 1;
-         }
-       }
+  if(fleet.dred > 0 && h > 0){
+    while(fleet.dred>0 && h > 0){
+     h = h - 1;
+     fleet.dred= fleet.dred - 1;
+    }
+  }
 
-       if(fleet.sun > 0 && h > 0){
-          while(fleet.sun>0 && h > 0){
-            h = h - 1;
-            fleet.sun = fleet.sun - 1;
-          }
-        }
+  if(fleet.sun > 0 && h > 0){
+    while(fleet.sun>0 && h > 0){
+      h = h - 1;
+      fleet.sun = fleet.sun - 1;
+    }
+  }
 }
 
 //runs the simulation, looping through each game round
 function fleetSim(fleet1, fleet2){
   var winner
-  if((fleetSum(fleet1)) < 1 ||(fleetSum(fleet2))<1){ // tests that there are enough ships
-  console.log("not enough ships in one of the fleets")
+  if( (fleetSum(fleet1) < 1 ) || (fleetSum(fleet2)<1) ){ // tests that there are enough ships
+    console.log("not enough ships in one of the fleets")
 
-      } else{
-        //pds fire
-        var h1 = shipRound(fleet1.pds, fleet1.pdsHit)
-        var h2 = shipRound(fleet2.pds, fleet2.pdsHit)
-        assignHits(fleet1, h2);
-        assignHits(fleet2, h1);
+  } else {
+    //pds fire
+    var h1 = shipRound(fleet1.pds, fleet1.pdsHit)
+    var h2 = shipRound(fleet2.pds, fleet2.pdsHit)
+    assignHits(fleet1, h2);
+    assignHits(fleet2, h1);
 
-       //tests if the battle is over
-          if((fleetSum(fleet1)) < 1 ||(fleetSum(fleet2))<1){
-            if (fleetSum(fleet1) > fleetSum(fleet2)){
-              winner = 1
-            } else {winner = 2}}
-
-      //only initiates if there are o fleets left
-        while(fleetSum(fleet1) > 0 && fleetSum(fleet2) > 0) //while at least one fleet has ships,
-      {
-          h1 = battleRound(fleet1)
-          h2 = battleRound(fleet2)
-          assignHits(fleet1, h2);
-          assignHits(fleet2, h1);
-
-
-        }
-
+    //tests if the battle is over
+    if((fleetSum(fleet1)) < 1 ||(fleetSum(fleet2))<1){
       if (fleetSum(fleet1) > fleetSum(fleet2)){
-        winner = 1
-      } else {winner = 2}
+          winner = 1
+      } else {
+          winner = 2
       }
-     return winner
+    }
+
+    //only initiates if there are o fleets left
+    while(fleetSum(fleet1) > 0 && fleetSum(fleet2) > 0) { //while at least one fleet has ships
+      h1 = battleRound(fleet1)
+      h2 = battleRound(fleet2)
+      assignHits(fleet1, h2);
+      assignHits(fleet2, h1);
+    }
+
+    if (fleetSum(fleet1) > fleetSum(fleet2)){
+      winner = 1
+    } else {
+      winner = 2
+    }
+
+  }
+  
+  return winner
 
 }
 
