@@ -19,72 +19,73 @@
 </head>
 
 <body>
+	<div id="simulator">
+		<h1>TI Battle Simulator</h1>
 
-	<h1>TI Simulator</h1>
+		Fleet 1 Wins: <span id="team1"></span><br>
+		Fleet 2 Wins: <span id="team2"></span>
 
-	Fleet 1 Wins: <span id="team1"></span><br>
-	Fleet 2 Wins: <span id="team2"></span>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th>&nbsp;</th>	    
+		      <th>Fleet 1</th>
+		      <th>Fleet 2</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row">Fighters</th>
+		      <td><input type="text" id="fighterOne" value="0"></td>
+		      <td><input type="text" id="fighterTwo" value="0"></td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Carriers</th>
+		      <td><input type="text" id="carrierOne" value="0"></td>
+			  <td><input type="text" id="carrierTwo" value="0"></td>	      
+		    </tr>
+		    <tr>
+		      <th scope="row">Destroyers</th>
+		      <td><input type="text" id="destroyerOne" value="0"></td>
+		      <td><input type="text" id="destroyerTwo" value="0"></td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Cruisers</th>
+		      <td><input type="text" id="cruiserOne" value="0"></td>
+		      <td><input type="text" id="cruiserTwo" value="0"></td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Dreddie</th>
+		      <td><input type="text" id="dreddieOne" value="0"></td>
+		      <td><input type="text" id="dreddieTwo" value="0"></td>
+		    </tr>	    	    	    
+		    <tr>
+		      <th scope="row">War Sun</th>
+		      <td><input type="text" id="warSunOne" value="0"></td>
+		      <td><input type="text" id="warSunTwo" value="0"></td>
+		    </tr>	    
+		    <tr>
+		      <th scope="row">Cannon</th>
+		      <td><input type="text" id="cannonOne" value="0"></td>
+		      <td><input type="text" id="cannonTwo" value="0"></td>
+		    </tr>	    
+		    <tr>
+		      <th scope="row">Infantry</th>
+		      <td><input type="text" id="infantryOne" value="0"></td>
+		      <td><input type="text" id="infantryTwo" value="0"></td>
+		    </tr>	    
+		    <tr>
+		    	<td>
+		    		<button id="simulateBtn" type="button" class="btn btn-primary">Simulate!</button>
+		    		<button id="singleRunBtn" type="button" class="btn btn-primary">Single Run</button>
+		    	</td>
+		    </tr>
+		  </tbody>
+		</table>
+		<div id="resultsDiv">
 
-	<table class="table">
-	  <thead>
-	    <tr>
-	      <th>&nbsp;</th>	    
-	      <th>Fleet 1</th>
-	      <th>Fleet 2</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">Fighters</th>
-	      <td><input type="text" id="fighterOne" value="0"></td>
-	      <td><input type="text" id="fighterTwo" value="0"></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">Carriers</th>
-	      <td><input type="text" id="carrierOne" value="0"></td>
-		  <td><input type="text" id="carrierTwo" value="0"></td>	      
-	    </tr>
-	    <tr>
-	      <th scope="row">Destroyers</th>
-	      <td><input type="text" id="destroyerOne" value="0"></td>
-	      <td><input type="text" id="destroyerTwo" value="0"></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">Cruisers</th>
-	      <td><input type="text" id="cruiserOne" value="0"></td>
-	      <td><input type="text" id="cruiserTwo" value="0"></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">Dreddie</th>
-	      <td><input type="text" id="dreddieOne" value="0"></td>
-	      <td><input type="text" id="dreddieTwo" value="0"></td>
-	    </tr>	    	    	    
-	    <tr>
-	      <th scope="row">War Sun</th>
-	      <td><input type="text" id="warSunOne" value="0"></td>
-	      <td><input type="text" id="warSunTwo" value="0"></td>
-	    </tr>	    
-	    <tr>
-	      <th scope="row">Cannon</th>
-	      <td><input type="text" id="cannonOne" value="0"></td>
-	      <td><input type="text" id="cannonTwo" value="0"></td>
-	    </tr>	    
-	    <tr>
-	      <th scope="row">Infantry</th>
-	      <td><input type="text" id="infantryOne" value="0"></td>
-	      <td><input type="text" id="infantryTwo" value="0"></td>
-	    </tr>	    
-	    <tr>
-	    	<td>
-	    		<button id="simulateBtn" type="button" class="btn btn-primary">Simulate!</button>
-	    	</td>
-	    </tr>
-	  </tbody>
-	</table>
-	<div id="resultsDiv">
-
+		</div>
 	</div>
-
 
 
 </body>

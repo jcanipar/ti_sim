@@ -1,10 +1,13 @@
 $( document ).ready(function() {
   //Attaches the doSim function to the submit button on a click
+  $('#resultsDiv').hide();
   $('#simulateBtn').click(doSim);
+  $('#singleRunBtn').click(doSingleRun);
 });
 
-function doSim() {
-  
+//simulate a battle numRuns number of times
+function fightFleets(numberOfRuns) {
+
   var fleet1 = new fleet("Fleet 1",
                         $('#fighterOne').val(), 9,
                         $('#carrierOne').val(), 9,
@@ -31,7 +34,7 @@ function doSim() {
 
   var fleet1wins = 0;
   var fleet2wins = 0;
-  for (var j = 0; j < 1; j++){ //loops through the simulaion 1000 times figuring our who wins
+  for (var j = 0; j < numberOfRuns; j++){ 
 
     var winner = 0;
     fleet1f = Object.assign({},fleet1);
@@ -47,6 +50,15 @@ function doSim() {
   $("#team1").text(fleet1wins);
   console.log(fleet2wins);
   $("#team2").text(fleet2wins);
+}
+
+function doSim() {
+  fightFleets(1000);
+}
+
+function doSingleRun() {
+  fightFleets(1);
+  $('#resultsDiv').show();
 }
 
 //fleet object contains all the necessary info about the fleet
