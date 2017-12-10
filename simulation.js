@@ -51,18 +51,18 @@ function fightFleets(numberOfRuns) {
   $("#team2").text(fleet2wins);
 }
 
+//run simulation 1000 times
 function doSim() {
   fightFleets(1000);
 }
 
+//fun through a battle once
 function doSingleRun() {
   fightFleets(1);
   $('#resultsDiv').show();
 }
 
 //fleet object contains all the necessary info about the fleet
-//var fleetc = 
-
 function fleet(fleetName, fighter, fighterHit, carrier, carrierHit, destroyer, destroyerHit, cruiser, cruiserHit, dreddie, dreddieHit, warSun, warSunHit, cannon, cannonHit, infantry, infantryHit){
 
   this.fleetName = fleetName;
@@ -99,6 +99,7 @@ function fleet(fleetName, fighter, fighterHit, carrier, carrierHit, destroyer, d
       return output
   };
 
+  //prints just the fleet information for ship types that still exist in the fleet
   this.printExisting = function () {
     output = this.fleetName + "<br>";
     if (this.fight > 0) {
@@ -133,12 +134,14 @@ function fleet(fleetName, fighter, fighterHit, carrier, carrierHit, destroyer, d
     return output
   }
 
+  //returns the total amount of damage the fleet can still take
   this.fleetSum = function() {
     var sum = 0
     sum = 1*this.fight + 1*this.car + 1*this.des + 1*this.cru + 1*this.dred + 1*this.sun
     return sum
   }
 
+  //returns true if the fleet has no ships left
   this.isDead = function() {
     return this.fleetSum() < 1
   }
