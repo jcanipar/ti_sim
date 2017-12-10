@@ -8,6 +8,8 @@ $( document ).ready(function() {
 //simulate a battle numRuns number of times
 function fightFleets(numberOfRuns) {
 
+  $('#resultsDiv').html("");
+
   var fleet1 = new fleet("Fleet 1",
                         $('#fighterOne').val(), 9,
                         $('#carrierOne').val(), 9,
