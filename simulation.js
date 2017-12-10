@@ -30,9 +30,6 @@ function fightFleets(numberOfRuns) {
                         $('#cannonTwo').val(), 6,
                         $('#infantryTwo').val(), 9);
 
-  alert(fleet1.print());
-  alert(fleet2.print());
-
 
   var fleet1wins = 0;
   var fleet2wins = 0;
@@ -91,16 +88,50 @@ function fleet(fleetName, fighter, fighterHit, carrier, carrierHit, destroyer, d
   //returns a string containing all of the fleet information - good for debugging
   //this is a javascript thing I only kind of understand
   this.print = function () {
-      output = "Fighters: " + this.fight + " Combat: " + this.fightHit + "\n";
-      output += "Carriers: " + this.car + " Combat: " + this.carHit + "\n";
-      output += "Destroyers: " + this.des + " Combat: " + this.desHit + "\n";
-      output += "Cruisers: " + this.cru + " Combat: " + this.cruHit + "\n";
-      output += "Dreddies: " + this.dred + " Combat: " + this.dredHit + "\n";
-      output += "War Sun: " + this.sun + " Combat: " + this.sunHit + "\n";
-      output += "PDS: " + this.pds + " Combat: " + this.pdsHit + "\n";
-      output += "Infantry: " + this.gf + " Combat: " + this.gfHit + "\n";
+      output = "Fighters: " + this.fight + " Combat: " + this.fightHit + "<br>";
+      output += "Carriers: " + this.car + " Combat: " + this.carHit + "<br>";
+      output += "Destroyers: " + this.des + " Combat: " + this.desHit + "<br>";
+      output += "Cruisers: " + this.cru + " Combat: " + this.cruHit + "<br>";
+      output += "Dreddies: " + this.dred + " Combat: " + this.dredHit + "<br>";
+      output += "War Sun: " + this.sun + " Combat: " + this.sunHit + "<br>";
+      output += "PDS: " + this.pds + " Combat: " + this.pdsHit + "<br>";
+      output += "Infantry: " + this.gf + " Combat: " + this.gfHit + "<br>";
       return output
   };
+
+  this.printExisting = function () {
+    output = this.fleetName + "<br>";
+    if (this.fight > 0) {
+      output += "Fighters: " + this.fight + " Combat: " + this.fightHit + "<br>";
+    }
+    if (this.car > 0) {
+      output += "Carriers: " + this.car + " Combat: " + this.carHit + "<br>";
+    }
+    if (this.des > 0) {
+      output += "Destroyers: " + this.des + " Combat: " + this.desHit + "<br>";
+    }
+    if (this.cru > 0) {
+      output += "Cruisers: " + this.cru + " Combat: " + this.cruHit + "<br>";
+    }
+    if (this.dred > 0) {
+      output += "Dreddies: " + this.dred + " Combat: " + this.dredHit + "<br>";
+    }
+    if (this.sun > 0) {
+      output += "War Sun: " + this.sun + " Combat: " + this.sunHit + "<br>";
+    }
+    if (this.pds > 0) {
+      output += "PDS: " + this.pds + " Combat: " + this.pdsHit + "<br>";
+    }
+    if (this.gf > 0) {
+      output += "Infantry: " + this.gf + " Combat: " + this.gfHit + "<br>";
+    }
+
+    if (output == "") {
+      output = "Fleet is empty."
+    }
+
+    return output
+  }
 
   this.fleetSum = function() {
     var sum = 0
@@ -122,7 +153,7 @@ function roll(n, hitv){
       hit ++ ;
     }
   }
-  $("#resultsDiv").append("<p>" + n + " shots at combat value: " + hitv + " got " + hit + " hits.</p>"); 
+  $("#resultsDiv").append("<p>" + n + " shots at combat value " + hitv + ": got " + hit + " hits.</p>"); 
   return hit
 }
 
@@ -195,7 +226,7 @@ function assignHits(fleet, hits){
     }
   }
 
-  $("#resultsDiv").append("<p>" + fleet.fleetName + " has " + fleet.fleetSum() + " hits left</p>")
+  $("#resultsDiv").append("<p>" + fleet.fleetName + " can take " + fleet.fleetSum() + " more damage</p>")
 }
 
 //runs the simulation, looping through each game round
@@ -205,6 +236,8 @@ function fleetSim(fleet1, fleet2){
     console.log("not enough ships in one of the fleets")
 
   } else {
+    $("#resultsDiv").append("<p>" + fleet1.printExisting() + "</p>")
+    $("#resultsDiv").append("<p>" + fleet2.printExisting() + "</p>")
     //pds fire
     var h1 = shipRound(fleet1.pds, fleet1.pdsHit)
     var h2 = shipRound(fleet2.pds, fleet2.pdsHit)
@@ -232,8 +265,12 @@ function fleetSim(fleet1, fleet2){
 
     if ( fleet1.fleetSum() > fleet2.fleetSum() ){
       winner = 1
+      $("#resultsDiv").append("Remaining Fleet: <br>");
+      $("#resultsDiv").append(fleet1.printExisting());
     } else {
       winner = 2
+      $("#resultsDiv").append("Remaining Fleet: <br>");
+      $("#resultsDiv").append(fleet2.printExisting());
     }
 
   }
