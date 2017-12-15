@@ -54,6 +54,9 @@ function fightFleets(numberOfRuns) {
   $("#team2").text(fleet2wins);
 }
 
+
+
+
 //run simulation 1000 times
 function doSim() {
   fightFleets(1000);
@@ -62,7 +65,7 @@ function doSim() {
 //fun through a battle once
 function doSingleRun() {
   fightFleets(1);
-  $('#resultsDiv').show();
+    $('#resultsDiv').show();
 }
 
 //fleet object contains all the necessary info about the fleet
@@ -77,16 +80,16 @@ function fleet(fleetName, fighter, fighterHit, carrier, carrierHit, destroyer, d
   this.desHit = destroyerHit;
   this.cru = cruiser;
   this.cruHit = cruiserHit;
-    //WAR SUN AND DREDDY NEED TO BE 2X!! It is HITS they can take
   this.dred = dreddie;
   this.dredHit = dreddieHit;
-  //WAR SUN AND DREDDY NEED TO BE 2X!! It is HITS they can take
   this.sun = warSun;
   this.sunHit = warSunHit;
   this.pds = cannon;
   this.pdsHit = cannonHit
   this.gf = infantry
   this.gfHit = infantryHit
+
+
 
   //returns a string containing all of the fleet information - good for debugging
   //this is a javascript thing I only kind of understand
