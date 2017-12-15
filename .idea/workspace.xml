@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2a15d63-bd34-4fef-a229-306973c95ea7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulation.js" afterPath="$PROJECT_DIR$/simulation.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,21 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simulation.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="simulation.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulation.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1207">
               <caret line="71" column="196" lean-forward="false" selection-start-line="71" selection-start-column="196" selection-end-line="71" selection-end-column="196" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sandbox" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sandbox">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,12 +119,12 @@
       <option name="presentableId" value="Default" />
       <updated>1512536166759</updated>
       <workItem from="1512536167884" duration="1477000" />
-      <workItem from="1513302305495" duration="3831000" />
+      <workItem from="1513302305495" duration="3924000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5308000" />
+    <option name="totallyTimeSpent" value="5401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -210,18 +199,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="196" lean-forward="false" selection-start-line="71" selection-start-column="196" selection-end-line="71" selection-end-column="196" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sandbox">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="196" lean-forward="false" selection-start-line="71" selection-start-column="196" selection-end-line="71" selection-end-column="196" />
           <folding />
         </state>
       </provider>
