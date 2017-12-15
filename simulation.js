@@ -35,6 +35,9 @@ function fightFleets(numberOfRuns) {
   var fleet2wins = 0;
   for (var j = 0; j < numberOfRuns; j++){ 
 
+    //dicks
+    //dicks
+
     var winner = 0;
     fleet1f = Object.assign({},fleet1);
     fleet2f = Object.assign({},fleet2);
